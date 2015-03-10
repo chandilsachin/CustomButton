@@ -51,7 +51,7 @@ public class HomeScreenButton extends View {
 		
 		
         paint.setShadowLayer(10, 10, 10, Color.YELLOW);
-        paint.set
+        //paint.set
         paint.setStrokeWidth(30);
         // Important for certain APIs 
         setLayerType(LAYER_TYPE_SOFTWARE, paint);
