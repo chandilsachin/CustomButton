@@ -13,6 +13,8 @@ public class HomeScreenButton extends View {
 
 	private int shadowColor = Color.parseColor("#000000");
 	
+	private final int gap = 10;
+	
 	public HomeScreenButton(Context context, AttributeSet attrs,
 			int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
@@ -35,7 +37,7 @@ public class HomeScreenButton extends View {
 	private void init()
 	{
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		setShadow(50, 50, 50, 50);
+		setShadow(5, 0, 5, 0);
 	}
 
 	Paint paint;
@@ -46,17 +48,29 @@ public class HomeScreenButton extends View {
 		return super.onDragEvent(event);
 	}
 	
+	
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		
 		
-        paint.setShadowLayer(10, 10, 10, Color.YELLOW);
-        //paint.set
-        paint.setStrokeWidth(30);
-        // Important for certain APIs 
+        paint.setShadowLayer(10, shadowRight - shadowLeft, shadowBottom - shadowTop, shadowColor);
+        setBackgroundColor(Color.TRANSPARENT);
         setLayerType(LAYER_TYPE_SOFTWARE, paint);
         ViewGroup.LayoutParams param = getLayoutParams();
-		canvas.drawRect(0+shadowLeft, 0+shadowTop, param.width-shadowRight, param.height-shadowBottom, paint);
+        System.out.println(shadowBottom+"|"+shadowTop+":"+(shadowBottom|shadowTop));
+        System.out.println(shadowLeft+"|"+shadowRight+":"+(shadowLeft|shadowRight));
+        if(shadowRight == 0 || shadowBottom == 0)
+        {
+        	shadowRight = 0;
+        	shadowBottom = 0;
+        }
+        if(shadowTop == 0 || shadowLeft == 0)
+        {
+        	shadowRight = 0;
+        	shadowBottom = 0;
+        }
+		canvas.drawRect(0+shadowLeft, 0+shadowTop, param.width-shadowRight-gap+shadowRight, param.height-shadowBottom-gap+shadowLeft, paint);
 		super.onDraw(canvas);
 	}
 
