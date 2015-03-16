@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta
+	content='width=device-width; initial-scale=1.0; maximum-scale=1.5; user-scalable=0;'
+	name='viewport' />
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery-algoPlugin.js"></script>
+<script src="algoFunctions.js"></script>
+<link rel="stylesheet" type="text/css" href="algo_style_neuro.css">
+
+<script>
+	$(document).ready(
+			function() {
+				$("#box1_nein").click(
+						function() {
+							toggleDecisionBtn("box1_nein", "box1_ja", 0);
+							toggleDecisionBtn3("box9_lt_btn", "box9_c_btn","box9_rt_btn", 1);
+							toggleLayout("box3", "box21", 0);
+							var array = new Array("box4", "box5","box8", "box9","box10","box11","box12","box13");
+							hideLayout(array);
+						});
+
+				$("#box1_ja").click(
+						function() {
+							toggleLayout("box9", "box3", 0);
+							toggleDecisionBtn3("box10_lt_btn", "box10_c_btn","box10_rt_btn", 1);
+							toggleDecisionBtn("box1_ja", "box1_nein", 0);
+							var array = new Array("box4", "box5", "box8","box10","box11","box12","box13");
+							hideLayout(array);
+						});
+
+				$("#box9_lt_btn").click(function() {
+
+					toggleDecisionBtn3("box9_lt_btn", "box9_c_btn","box9_rt_btn", 0);
+					//toggleDecisionBtn3("box9_", "box6_ja", 1);
+					toggleLayout3("box10", "box11", "box12",0);
+					//var array = new Array("box7","box11", "box12");
+					hideLayout(array);
+				});
+				$("#box9_c_btn").click(function() {
+
+					toggleDecisionBtn3("box9_c_btn", "box9_lt_btn","box9_rt_btn", 0);
+					//toggleDecisionBtn3("box9_", "box6_ja", 1);
+					toggleLayout3("box11", "box10", "box12",0);
+					//var array = new Array("box7","box10", "box12");
+					hideLayout(array);
+				});
+				$("#box9_rt_btn").click(function() {
+
+					toggleDecisionBtn3("box9_rt_btn", "box9_lt_btn","box9_c_btn", 0);
+					//toggleDecisionBtn3("box9_", "box6_ja", 1);
+					toggleLayout3("box12", "box10", "box11",0);
+					//var array = new Array("box7", "box10", "box11");
+					hideLayout(array);
+				});
+				
+				$("#box10_lt_btn").click(function() {
+
+					toggleDecisionBtn3("box10_lt_btn", "box10_c_btn","box10_rt_btn", 0);
+					//toggleDecisionBtn3("box9_", "box6_ja", 1);
+					toggleLayout3("box10", "box11", "box12",0);
+					//var array = new Array("box7","box11", "box12");
+					hideLayout(array);
+				});
+				$("#box10_c_btn").click(function() {
+
+					toggleDecisionBtn3("box10_c_btn", "box10_lt_btn","box10_rt_btn", 0);
+					//toggleDecisionBtn3("box9_", "box6_ja", 1);
+					toggleLayout3("box11", "box10", "box12",0);
+					//var array = new Array("box7","box10", "box12");
+					hideLayout(array);
+				});
+				$("#box10_rt_btn").click(function() {
+
+					toggleDecisionBtn3("box10_rt_btn", "box10_lt_btn","box10_c_btn", 0);
+					//toggleDecisionBtn3("box9_", "box6_ja", 1);
+					toggleLayout3("box12", "box10", "box11",0);
+					//var array = new Array("box7", "box10", "box11");
+					hideLayout(array);
+				});
+				$("#box9_nein").click(
+						function() {
+							toggleDecisionBtn("box9_nein", "box9_ja", 0);
+							toggleDecisionBtn("box3_ja", "box3_nein", 1);
+							toggleLayout("box3", "box4", 0);
+							var array = new Array("box4","box5","box8", "box10","box13","box11","box12");
+							hideLayout(array);
+						});
+
+				$("#box9_ja").click(
+						function() {
+							toggleDecisionBtn("box9_ja", "box9_nein",0);
+							//toggleDecisionBtn("box5_ja", "box5_nein", 1);
+							toggleLayout("box5", "box4", 0);
+							/* toggleDecisionBtn("box5_left", "box5_center",
+									"box5_right", 1); */
+							var array = new Array("box3","box4","box8", "box10","box13","box11","box12");
+							hideLayout(array);
+						});
+				$("#box4_nein").click(
+						function() {
+							toggleDecisionBtn("box4_nein", "box4_ja", 0);
+							toggleDecisionBtn("box8_nein", "box8_ja", 1);
+							toggleLayout("box8", "box6", 0);
+							var array = new Array("box10","box11","box12","box13","box5");
+							hideLayout(array);
+						});
+
+				$("#box4_ja").click(
+						function() {
+							toggleDecisionBtn("box4_ja", "box4_nein",0);
+							//toggleDecisionBtn("box5_ja", "box5_nein", 1);
+							toggleLayout("box5", "box6", 0);
+							/* toggleDecisionBtn("box5_left", "box5_center",
+									"box5_right", 1); */
+							var array = new Array("box8","box10","box11","box12","box13");
+							hideLayout(array);
+						});
+				$("#box8_nein").click(
+						function() {
+							toggleDecisionBtn("box8_nein", "box8_ja", 0);
+							toggleDecisionBtn("box10_nein", "box10_ja", 1);
+							toggleLayout("box10", "box", 0);
+							var array = new Array("box11","box5","box12","box13");
+							hideLayout(array);
+						});
+
+				$("#box8_ja").click(
+						function() {
+							toggleDecisionBtn("box8_ja", "box8_nein",0);
+							toggleDecisionBtn("box13_ja", "box13_nein", 1);
+							toggleLayout("box13", "box", 0);
+							/* toggleDecisionBtn("box5_left", "box5_center",
+									"box5_right", 1); */
+							var array = new Array("box11","box10","box5","box12");
+							hideLayout(array);
+						});
+				$("#box10_nein").click(
+						function() {
+							toggleDecisionBtn("box10_nein", "box10_ja", 0);
+							toggleDecisionBtn("box11_nein", "box11_ja", 1);
+							toggleLayout("box11", "box", 0);
+							var array = new Array("box5","box12","box13");
+							hideLayout(array);
+						});
+
+				$("#box10_ja").click(
+						function() {
+							toggleDecisionBtn("box10_ja", "box10_nein",0);
+							toggleLayout("box5", "box", 0);
+							/* toggleDecisionBtn("box5_left", "box5_center",
+									"box5_right", 1); */
+							var array = new Array("box11","box12","box13");
+							hideLayout(array);
+						});
+				$("#box11_nein").click(
+						function() {
+							toggleDecisionBtn("box11_nein", "box11_ja", 0);
+							toggleLayout("box5", "box", 0);
+							var array = new Array("box12","box13");
+							hideLayout(array);
+						});
+
+				$("#box11_ja").click(
+						function() {
+							toggleDecisionBtn("box11_ja", "box11_nein",0);
+							toggleLayout("box12", "box", 0);
+							/* toggleDecisionBtn("box5_left", "box5_center",
+									"box5_right", 1); */
+							var array = new Array("box13","box5");
+							hideLayout(array);
+						});
+
+				$("#ref_button").click(
+						function() {
+							var className = $('#ref_button').attr('class');
+							if (className == 'abbBtn')
+								$('#ref_button').removeClass('abbBtn')
+										.addClass('abbBtnClick');
+							else
+								$('#ref_button').removeClass('abbBtnClick')
+										.addClass('abbBtn');
+							$("#reference").slideToggle("fast", function() {
+								$('html, body').animate({
+									scrollTop : $(this).offset().top
+								}, 700);
+							});
+						});
+			
+			});
+</script>
+
+</head>
+<body>
+	<div id="box1">
+		<div class="info_box_top">
+			<p style="color: white;" class="text_left">Bestimmung des Lipidstatus bei Vorliegen folgender Risikofaktoren</p>
+			<p class="list-level2" style="text-align: left;color: white;">Typ-2-Diabetes mellitus</p>
+			<p class="list-level2" style="text-align: left;color: white;">Bestehende kardiovaskul&auml;re Erkrankung</p>
+			<p class="list-level2" style="text-align: left;color: white;">Arterieller Hypertonus</p>
+			<p class="list-level2" style="text-align: left;color: white;">Nikontinkonsum</p>
+			<p class="list-level2" style="text-align: left;color: white;">BMI &ge; 30 Kg/m<sup>2</sup> oder Taillenumfang M&auml;nner &ge; 94 cm<br> (90 cm bei m&auml;nnlichen Asiaten), Frauen &ge; 80 cm</p>
+			<p class="list-level2" style="text-align: left;color: white;">Positive Familienanamnese bzgl. kardiovaskul&auml;ren Erkrankungen</p>
+			<p class="list-level2" style="text-align: left;color: white;">Chronisch-entz&uuml;ndliche Erkrankungen</p>
+			<p class="list-level2" style="text-align: left;color: white;">Chronische Niereninsuffizienz</p>
+			<p class="list-level2" style="text-align: left;color: white;">Positive Familienanamnese bzgl. famili&auml;rer Dyslipid&auml;mie</p>
+			<p class="list-level2" style="text-align: left;color: white;">M&auml;nner > 40 Jahre, Frausen > 50 Jahre</p>
+		</div>
+		<div class="decision_box">
+			<p>
+				<br /> Liegt bei dem Patienten eine Erkrankung, z.B ein ACS, vor, die eine umgehende Behandlung erfordert?
+			</p>
+			<table style="width: 100%;">
+				<tr>
+					<td class="nein_btn" id="box1_nein"><b>Nein</b></td>
+					<td class="ja_btn" id="box1_ja"><b>Ja</b></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<!-- <div id="box2" style="display: none;">
+		<div class="info_text_box_orange">
+			<p>
+				<br />No FDA approved approach - consider Tysabri<sup>*</sup>, if
+				not already done, Imuran low dose Cytoxan
+			</p>
+		</div>
+	</div> -->
+
+	
+
+	
+
+	<div id="box9" style="display: none;">
+		
+			<div align="center" id="box2" class="info_box_top1">
+			
+			<p style="color: white;" class="text_left">Bestimmung des kardiovaskul&auml;ren Risikos anhand</p>
+			<p class="list-level2" style="text-align: left;color: white;">des SCORE - Charts</p>
+			<p class="list-level2" style="text-align: left;color: white;">dem interaktiven Rechner in dieser App oder</p>
+			<p class="list-level2" style="text-align: left;color: white;">dem Algorithmus unter www.heartscore.org Bei Patienten mit akuter Erkrankung z.B, ACS, erfolgt diese Bestimmung ohne erneute Kontrolle der Lipidwerte. Wichtig ist es, den Patienten in das Risikomanagement miteinzubeziehen</p>
+			
+			</div>
+			<div class="decision_box">
+			<p>
+				<br />LDL-Zielwert anhand des Score Levels und weiterer Risikofaktoren festlegen
+			</p>
+			<table style="width: 100%;">
+					<tr>
+						<td class="left_btn" id="box10_lt_btn"><b>Score Level &ge;10% </b></td>
+						<td class="center_btn" id="box10_c_btn"><b>Score Level &ge; 5%, < 10% </b></td>
+						<td class="right_btn" id="box10_rt_btn"><b>Score Level &ge; 1%, < 5%</b></td>
+					</tr>
+				</table>
+		</div>
+	</div>
+	
+	<div id="box3" style="display: none;">
+		<div align="center" id="box2" class="info_box_top1">
+			<p>
+				Erneute Bestimmung des Lipidstatus innerhalb 1-12 Wochen nach der ersten Bestimmung<br/>
+			</p>
+			</div>
+			<div align="center" id="box2" class="info_box_top1">
+			
+			<p style="color: white;" class="text_left">Bestimmung des kardiovaskul&auml;ren Risikos anhand</p>
+			<p class="list-level2" style="text-align: left;color: white;">des SCORE - Charts</p>
+			<p class="list-level2" style="text-align: left;color: white;">dem interaktiven Rechner in dieser App oder</p>
+			<p class="list-level2" style="text-align: left;color: white;">dem Algorithmus unter www.heartscore.org Bei Patienten mit akuter Erkrankung z.B, ACS, erfolgt diese Bestimmung ohne erneute Kontrolle der Lipidwerte. Wichtig ist es, den Patienten in das Risikomanagement miteinzubeziehen</p>
+			
+			</div>
+			<div class="decision_box">
+			<p>
+				<br />LDL-Zielwert anhand des Score Levels und weiterer Risikofaktoren festlegen
+			</p>
+			<table style="width: 100%;">
+					<tr>
+						<td class="left_btn" id="box9_lt_btn"><b>Score Level &ge;10% </b></td>
+						<td class="center_btn" id="box9_c_btn"><b>Score Level &ge; 5%, < 10% </b></td>
+						<td class="right_btn" id="box9_rt_btn"><b>Score Level &ge; 1%, < 5%</b></td>
+					</tr>
+				</table>
+		</div>
+	</div>
+
+	<div id="box10" style="display: none;">
+		<div class="info_box_top1">
+			<p style="color: white;" class="text_left">Score Level &ge; 10% au&#223;erdem</p>
+				<p class="list-level2" style="text-align: left;color: white;">bestehende kardio&shy;vaskul&auml;re Erkrankung</p>
+				<p class="list-level2" style="text-align: left;color: white;">Typ-2-Diabetes</p>
+				<p class="list-level2" style="text-align: left;color: white;">Typ-1-Diabetes mit Endorgansch&auml;den</p>
+				
+			
+		</div>
+		<div class="info_text_box_orange">
+			<p>
+				<br />Sehr hohes kardio&shy;vaskul&auml;re Risiko: LDL-C Ziewlwert < 1,8 mmol/L (70 mg/dl) und/oder &ge; 50% Reduktion des LDL-C-Wertes, wenn Zielwert nicht erreicht werden kann
+			</p>
+		</div>
+	</div>
+	<div id="box11" style="display: none;">
+		<div class="info_box_top1">
+			<p style="color: white;">Score Level &ge; 5% < 10% au&#223;erdem relevant erh&ouml;hte einzelne Risikofaktoren</p>
+			
+		</div>
+		<div class="info_text_box_orange">
+			
+			 	<p ><br>Hohes kardiovaskul&auml;res Risiko: LDL-C Zielwert < 2,5 mmol/L (100 mg/dl)</p>
+				
+			
+		</div>
+	</div>
+	<div id="box12" style="display: none;">
+		
+		<div class="info_box_top1">
+			<p style="color: white;">Score Level &ge; 1% < 5% </p>
+			
+		</div>
+		<div class="info_text_box_orange">
+			<p>
+				<br /> Mittleres kardio&shy;vaskul&auml;res Risiko LDL-C Zielwert < 3 mmol/L (115 mg/dl)
+			</p>
+		</div>
+	</div>
+	<div id="box5" style="display: none;">
+		<div class="info_text_box_orange">
+			<p>
+				<br />inoperabel bzw. Einzelfallentscheidung
+			</p>
+		</div>
+	</div>
+	<div id="box13" style="display: none;">
+		<div class="info_text_box_orange">
+			<p>
+				<br />operabel bis zur Pneumonektomie
+			</p>
+		</div>
+	</div>
+	<!-- <div id="box6" style="display: none;">
+		<div class="info_box_top1">
+			<p>Oral anticoagulant therapy</p>
+		</div>
+		<div class="info_box_top1">
+			<p>
+				Assess bleeding risk <br />(HAS-BLED score) <br /> Consider patient
+				values and preferences
+			</p>
+		</div>
+		<div class="info_text_box_orange">
+			<p>
+				<br /> Best option: NOAC <br /> Alternative option: VKA
+			</p>
+		</div>
+
+	</div>
+	
+	<div id="box7" style="display: none;">
+		
+	</div> -->
+	<br />
+	<br />
+	
+
+	<!-- <div style="float: right">
+		<table style="width: 100% border: 0px solid #ffffff;">
+			<col style="width: 50%">
+			<col style="width: 100px">
+			<col style="width: 70px">
+			<tr>
+				<td></td>
+				<td><button id="ref_button" class="abbBtn">Abbreviations
+						and footnotes</button></td>
+				<td><button id="pdf_button" class="flipButton">
+						<a href="flipView"><img src="pdf.png" class="pdfImage">
+							</img></a>
+					</button></td>
+			</tr>
+		</table>
+	</div>
+	<br />
+	<br />
+	<br />
+
+
+
+	<div id="reference" style="display: none;">
+		<div class="info_text_box_abb">
+			<p class="text_left">
+				FEV1= forciertes exspiratorisches 1-Sekunden-Volumen,
+Einsekundenkapazit&auml;t
+TLCO= CO-Transferfaktor<nobr> (CO-Diffusionskapazität)</nobr><br/>
+ppoFEV1= pr&auml;diktives postoperatives FEV1<br/>
+ppoTLCO= pr&auml;diktive postoperative<nobr> CO-Diffusionskapazität</nobr><br/>
+VO<sub>2</sub>max= maximale Sauerstoffaufnahme<br/>
+ppoVO<sub>2</sub>max= pr&auml;diktive postoperative maximale Sauerstoffaufnahme
+			</p>
+		</div>
+		
+	</div> -->
+
+
+
+</body>
+</html>
